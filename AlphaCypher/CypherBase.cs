@@ -77,7 +77,7 @@ namespace AlphaCypher
             {
                 char tmp = s[i];
                 int pos = ResearchLetterPosition(tmp);             //Restituisce la posizione della lettera nell'alfabeto.
-                int decodedPos = (pos - crowding + 26) % 26;      //Calcola la posizione della lettera codificata.
+                int decodedPos = (pos - crowding + 26) % 26;      //Calcola la posizione della lettera decodificata.
                 resp += _alphabetList[decodedPos];
             }
             return resp;
