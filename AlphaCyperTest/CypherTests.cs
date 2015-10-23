@@ -20,5 +20,16 @@ namespace AlphaCyperTest
             string codifica = crypt.Encode(testo, codice);
             Assert.AreEqual(codifica,ris);
         }
+
+        [TestMethod]
+        public void TestCaesarDecrypt()
+        {
+            string testo = "EDDS";
+            string codice = "E";
+            string ris = "AZZO";
+            Caesar crypt = new Caesar();
+            string decodifica = crypt.Decode(testo, codice);
+            Assert.AreEqual(decodifica, ris);
+        }
     }
 }
