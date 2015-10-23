@@ -50,22 +50,22 @@ namespace AlphaCypher
         public virtual string Encode(string text, string cypher)
         {
             string resp = "";
-            int crowding = ResearchLetterPosition(cypher.ToUpper()[0]) + 1;
-            resp = Decode(text.ToUpper(), crowding);
+            int crowding = ResearchLetterPosition(cypher.ToUpper()[0]);
+            resp = Encode(text.ToUpper(), crowding);
             return resp;
         }
 
         public string Encode(string text)
         {
             string resp = "";
-            resp = Decode(text, _crowding);
+            resp = Encode(text, _crowding);
             return resp;
         }
 
         public string Encode(char text, char cypher)
         {
             string resp = "";
-            resp = Decode(text.ToString(), cypher.ToString());
+            resp = Encode(text.ToString(), cypher.ToString());
             return resp;
         }
 
@@ -77,8 +77,8 @@ namespace AlphaCypher
             {
                 char tmp = s[i];
                 int pos = ResearchLetterPosition(tmp);             //Restituisce la posizione della lettera nell'alfabeto.
-                int decodedPos = (pos - crowding + 26) % 26;      //Calcola la posizione della lettera decodificata.
-                resp += _alphabetList[decodedPos];
+                int encodedPos = (pos + crowding) % 26;      //Calcola la posizione della lettera decodificata.
+                resp += _alphabetList[encodedPos];
             }
             return resp;
         }
@@ -117,8 +117,8 @@ namespace AlphaCypher
             {
                 char tmp = s[i];
                 int pos = ResearchLetterPosition(tmp);             //Restituisce la posizione della lettera nell'alfabeto.
-                int encodedPos = (pos + crowding) % 26;      //Calcola la posizione della lettera codificata.
-                resp += _alphabetList[encodedPos];
+                int decodedPos = (pos - crowding + 26) % 26;      //Calcola la posizione della lettera codificata.
+                resp += _alphabetList[decodedPos];
             }
             return resp;
         }
