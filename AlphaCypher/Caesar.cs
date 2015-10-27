@@ -8,14 +8,28 @@ namespace AlphaCypher
 {
     public class Caesar : CypherBase, ICypher
     {
-        public string Decode(string text, string cypher)
+        public override string Decode(string text, string cypher)
         {
             string resp = "";
             resp = base.Decode(text, cypher);
             return resp;
         }
 
-        public string Encode(string text, string cypher)
+        public override string Decode(string text, int cypher)
+        {
+            string resp = "";
+            resp = base.Decode(text, cypher);
+            return resp;
+        }
+
+        public override string Encode(string text, string cypher)
+        {
+            string resp = "";
+            resp = base.Encode(text, cypher);
+            return resp;
+        }
+
+        public override string Encode(string text, int cypher)
         {
             string resp = "";
             resp = base.Encode(text, cypher);
