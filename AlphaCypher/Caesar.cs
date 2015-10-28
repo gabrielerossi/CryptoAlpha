@@ -6,35 +6,52 @@ using System.Threading.Tasks;
 
 namespace AlphaCypher
 {
-    public class Caesar : CypherBase, ICypher
+    public class Caesar : CypherBase
     {
         public override string Decode(string text, string cypher)
         {
             string resp = "";
-            resp = base.Decode(text, cypher);
+
+            char[] s = text.ToCharArray();
+            for (int i = 0; i < s.Length; i++)
+            {
+                resp += Decode(s[i], cypher[0]);
+            }
+
             return resp;
         }
 
-        public override string Decode(string text, int cypher)
+        public string Decode(string text, int cypher)
         {
             string resp = "";
-            resp = base.Decode(text, cypher);
+
+            resp = Decode(text, Convert.ToString(_alphabetList[cypher % 26]));
+
             return resp;
         }
 
         public override string Encode(string text, string cypher)
         {
             string resp = "";
-            resp = base.Encode(text, cypher);
+
+            char[] s = text.ToCharArray();
+            for (int i = 0; i < s.Length; i++)
+            {
+                resp += Encode(s[i], cypher[0]);
+            }
+
             return resp;
         }
 
-        public override string Encode(string text, int cypher)
+        public string Encode(string text, int cypher)
         {
             string resp = "";
-            resp = base.Encode(text, cypher);
+            
+            resp = Encode(text, Convert.ToString(_alphabetList[cypher % 26]));
+            
             return resp;
         }
+
 
         public Task<string> DecodeAsync(string text, string cypher)
         {

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AlphaCypher;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace AlphaCyperTest
+namespace CyperTest
 {
     [TestClass]
     public class Cyphertests
@@ -54,16 +51,16 @@ namespace AlphaCyperTest
             Assert.AreEqual(decoder, ris);
         }
 
-        //[TestMethod]
-        //public void TestVigenereEncrypt()
-        //{
-        //    string text = "AZZO";
-        //    string cypher = "DFS";
-        //    string ris = "DERR";
-        //    Vigenere crypt = new Vigenere();
-        //    string encoder = crypt.Encode(text, cypher);
-        //    Assert.AreEqual(encoder, ris);
-        //}
+        [TestMethod]
+        public void TestVigenereEncrypt()
+        {
+            string text = "AZZO";
+            string cypher = "DFS";
+            string ris = "DERR";
+            Vigenere crypt = new Vigenere();
+            string encoder = crypt.Encode(text, cypher);
+            Assert.AreEqual(encoder, ris);
+        }
 
         //[TestMethod]
         //public void TestVigenereDecrypt()
