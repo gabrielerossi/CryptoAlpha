@@ -19,7 +19,7 @@ namespace AlphaCypher
             return resp;
         }
 
-        public string Decode(string text, int cypher)
+        public virtual string Decode(string text, int cypher)
         {
             string resp = "";
             resp = Decode(text, Convert.ToString(_alphabetList[cypher % 26]));
@@ -37,22 +37,31 @@ namespace AlphaCypher
             return resp;
         }
 
-        public string Encode(string text, int cypher)
+        public virtual string Encode(string text, int cypher)
         {
             string resp = "";
             resp = Encode(text, Convert.ToString(_alphabetList[cypher % 26]));            
             return resp;
         }
 
-
-        public Task<string> DecodeAsync(string text, string cypher)
+        public override Task<string> EncodeAsync(string text, string cypher)
         {
-            throw new NotImplementedException();
+            return Task.Factory.StartNew(() => Encode(text, cypher));
         }
 
-        public Task<string> EncodeAsync(string text, string cypher)
+        public Task<string> EncodeAsync(string text, int cypher)
         {
-            throw new NotImplementedException();
+            return Task.Factory.StartNew(() => Encode(text, cypher));
+        }
+
+        public override Task<string> DecodeAsync(string text, string cypher)
+        {
+            return Task.Factory.StartNew(() => Decode(text, cypher));
+        }
+
+        public Task<string> DecodeAsync(string text, int cypher)
+        {
+            return Task.Factory.StartNew(() => Decode(text, cypher));
         }
     }
 }

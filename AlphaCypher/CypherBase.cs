@@ -87,14 +87,14 @@ namespace AlphaCypher
 
         #region Encode/Decode Async
 
-        public Task<string> EncodeAsync(string text, string cypher)
+        public virtual Task<string> EncodeAsync(string text, string cypher)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
-        public Task<string> DecodeAsync(string text, string cypher)
+        public virtual Task<string> DecodeAsync(string text, string cypher)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         #endregion
