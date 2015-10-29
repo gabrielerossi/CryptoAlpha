@@ -8,7 +8,7 @@ namespace AlphaCypher
 {
     public class Vigenere : CypherBase
     {
-        public new string Encode(string text, string cypher)
+        public override string Encode(string text, string cypher)
         {
             string resp = "";
             for (int i = 0; i < text.Length; i++)
@@ -16,7 +16,7 @@ namespace AlphaCypher
             return resp;
         }
 
-        public new string Decode(string text, string cypher)
+        public override string Decode(string text, string cypher)
         {
             string resp = "";
             for (int i = 0; i < text.Length; i++)

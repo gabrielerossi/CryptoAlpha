@@ -10,7 +10,6 @@ namespace AlphaCypher
     public abstract class CypherBase : ICypher
     {
         protected List<Char> _alphabetList;
-        protected int _crowding;
 
         public CypherBase()
         {
@@ -38,11 +37,6 @@ namespace AlphaCypher
                 }
             }
             return resp;
-        }
-
-        public Task<string> DecodeAsync(string text, string cypher)
-        {
-            throw new NotImplementedException();
         }
 
         #region EncodeMethods
@@ -76,14 +70,7 @@ namespace AlphaCypher
 
             return resp;
         }
-
-        //public string Decode(string text)
-        //{
-        //    string resp = "";
-        //    resp = Decode(text, _crowding);
-        //    return resp;
-        //}
-
+        
         public string Decode(char text, char cypher)
         {
             string resp = "";
@@ -96,25 +83,20 @@ namespace AlphaCypher
             return resp;
         }
 
-        //public virtual string Decode(string text, int crowding)
-        //{
-        //    string resp = "";
-        //    char[] s = text.ToCharArray();
-        //    for (int i = 0; i < s.Length; i++)
-        //    {
-        //        char tmp = s[i];
-        //        int pos = ResearchLetterPosition(tmp);             //Restituisce la posizione della lettera nell'alfabeto.
-        //        int decodedPos = (pos - crowding + 26) % 26;      //Calcola la posizione della lettera codificata.
-        //        resp += _alphabetList[decodedPos];
-        //    }
-        //    return resp;
-        //}
-        
         #endregion
+
+        #region Encode/Decode Async
 
         public Task<string> EncodeAsync(string text, string cypher)
         {
             throw new NotImplementedException();
         }
+
+        public Task<string> DecodeAsync(string text, string cypher)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
