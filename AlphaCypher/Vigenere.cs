@@ -8,6 +8,14 @@ namespace AlphaCypher
 {
     public class Vigenere : CypherBase
     {
+        protected override string Letters
+        {
+            get
+            {
+                return "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            }
+        }
+
         public override string Encode(string text, string cypher)
         {
             string resp = "";

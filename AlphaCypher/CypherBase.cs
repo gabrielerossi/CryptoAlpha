@@ -10,6 +10,13 @@ namespace AlphaCypher
     public abstract class CypherBase : ICypher
     {
         protected List<Char> _alphabetList;
+        protected virtual string Letters
+        {
+            get
+            {
+                return "";
+            }
+        }
 
         public CypherBase()
         {
@@ -21,8 +28,7 @@ namespace AlphaCypher
         {
             for (int i = 0; i < 26; i++)
             {
-                char tmp = (char)(i + 65);
-                _alphabetList.Add(tmp);
+                _alphabetList.Add(Letters[i]);
             }
         }
 
