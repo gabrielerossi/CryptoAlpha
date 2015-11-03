@@ -9,20 +9,33 @@ namespace AlphaCypher
 {
     public class Vigenere64 : Vigenere
     {
+        protected override string Letters
+        {
+            get
+            {
+                return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+            }
+        }
+
         public override string Encode(string text, string cypher)
         {
             string resp = "";
-            string tmp = base.Encode(text, cypher);
-            char[] charEncoded = BaseEncoding.Base64.Encode(Encoding.UTF8.GetBytes(tmp));
-            resp = new string(charEncoded);
+            char[] text64 = BaseEncoding.Base64.Encode(Encoding.UTF8.GetBytes(text));
+            char[] cypher64 = BaseEncoding.Base64.Encode(Encoding.UTF8.GetBytes(cypher));
+            string stringText64 = new string(text64);
+            string stringCypher64 = new string(cypher64);
+            resp = base.Encode(stringText64, stringCypher64);
             return resp;
         }
 
         public override string Decode(string text, string cypher)
         {
             string resp = "";
-            byte[] byteDecoded = BaseEncoding.Base64.Decode(text.ToCharArray());
-            resp = base.Decode(Encoding.UTF8.GetString(byteDecoded, 0, byteDecoded.Length), cypher);
+            char[] cypher64 = BaseEncoding.Base64.Encode(Encoding.UTF8.GetBytes(cypher));
+            string stringCypher64 = new string(cypher64);
+            string stringText64 = base.Decode(text, stringCypher64);
+            byte[] text64 = BaseEncoding.Base64.Decode(stringText64.ToCharArray());
+            resp = Encoding.UTF8.GetString(text64, 0, text64.Length);
             return resp;
         }
     }

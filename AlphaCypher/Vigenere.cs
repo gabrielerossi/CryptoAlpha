@@ -20,7 +20,7 @@ namespace AlphaCypher
         {
             string resp = "";
             for (int i = 0; i < text.Length; i++)
-                resp += Encode(text[i], cypher[i % cypher.Length]);
+                resp += base.Encode(text[i], cypher[i % cypher.Length]);
             return resp;
         }
 
@@ -28,8 +28,18 @@ namespace AlphaCypher
         {
             string resp = "";
             for (int i = 0; i < text.Length; i++)
-                resp += Decode(text[i], cypher[i % cypher.Length]);
+                resp += base.Decode(text[i], cypher[i % cypher.Length]);
             return resp;
+        }
+
+        public override Task<string> EncodeAsync(string text, string cypher)
+        {
+            return Task.Factory.StartNew(() => Encode(text, cypher));
+        }
+
+        public override Task<string> DecodeAsync(string text, string cypher)
+        {
+            return Task.Factory.StartNew(() => Decode(text, cypher));
         }
     }
 }

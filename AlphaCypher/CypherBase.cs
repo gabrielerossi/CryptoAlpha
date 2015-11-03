@@ -26,7 +26,7 @@ namespace AlphaCypher
 
         protected virtual void AlphabetInitializer()
         {
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < Letters.Length; i++)
             {
                 _alphabetList.Add(Letters[i]);
             }
@@ -46,13 +46,8 @@ namespace AlphaCypher
         }
 
         #region EncodeMethods
-        
-        public virtual string Encode(string text, string cypher)
-        {
-            string resp = "";
-            
-            return resp;
-        }
+
+        public abstract string Encode(string text, string cypher);
 
         public string Encode(char text, char cypher)
         {
@@ -60,7 +55,7 @@ namespace AlphaCypher
 
             int crowding = ResearchLetterPosition(cypher);
             int pos = ResearchLetterPosition(text);
-            int encodedPos = (pos + crowding) % 26;
+            int encodedPos = (pos + crowding) % _alphabetList.Count;
             resp += _alphabetList[encodedPos];
 
             return resp;
@@ -70,20 +65,15 @@ namespace AlphaCypher
 
         #region DecodeMethods
 
-        public virtual string Decode(string text, string cypher)
-        {
-            string resp = "";
-
-            return resp;
-        }
+        public abstract string Decode(string text, string cypher);
         
-        public string Decode(char text, char cypher)
+        public virtual string Decode(char text, char cypher)
         {
             string resp = "";
 
             int crowding = ResearchLetterPosition(cypher);
             int pos = ResearchLetterPosition(text);
-            int decodedPos = (pos - crowding + 26) % 26;
+            int decodedPos = (pos - crowding + _alphabetList.Count) % _alphabetList.Count;
             resp += _alphabetList[decodedPos];
 
             return resp;
@@ -93,15 +83,9 @@ namespace AlphaCypher
 
         #region Encode/Decode Async
 
-        public virtual Task<string> EncodeAsync(string text, string cypher)
-        {
-            return null;
-        }
+        public abstract Task<string> EncodeAsync(string text, string cypher);
 
-        public virtual Task<string> DecodeAsync(string text, string cypher)
-        {
-            return null;
-        }
+        public abstract Task<string> DecodeAsync(string text, string cypher);
 
         #endregion
     }
