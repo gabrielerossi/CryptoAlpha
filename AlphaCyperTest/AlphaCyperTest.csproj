@@ -115,6 +115,7 @@
     <SDKReference Include="TestPlatform, Version=14.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncTests.cs" />
     <Compile Include="Vigenere64Tests.cs" />
     <Compile Include="Vigenere32Tests.cs" />
     <Compile Include="VigenereTests.cs" />
